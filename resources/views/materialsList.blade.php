@@ -13,33 +13,18 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="col-md-6">
-                        <form method="POST" action="{{ route('material_post') }}">
+
+                        <form method="POST">
                             @csrf
-                            <p>Добавить новый материал</p>
                             <div class="form-group row">
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Наименование</label>
 
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback">
                                         <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Единица измерения</label>
-
-                                <div class="col-md-8">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="unit" value="{{ old('unit') }}" required autofocus>
-
-                                    @if ($errors->has('unit'))
-                                        <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('unit') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -53,7 +38,6 @@
                                 </div>
                             </div>
                         </form>
-                    </div>
                 </div>
             </div>
         </div>

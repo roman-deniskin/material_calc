@@ -23,6 +23,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+Route::get('/material', 'MaterialController@index')->name('material');
+Route::post('material', 'MaterialController@post')->name('material_post');
 
-Route::get('/home', 'HomeController@index')->name('home');
