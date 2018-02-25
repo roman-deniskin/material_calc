@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -22,6 +23,18 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                @if (Route::has('login'))
+                    <div class="navbar-collapse">
+                        <ul class="navbar-nav ml-auto">
+                            @auth
+                                <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Главная</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">История расчётов</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Детали</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('material') }}">Материалы</a></li>
+                            @endauth
+                        </ul>
+                    </div>
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

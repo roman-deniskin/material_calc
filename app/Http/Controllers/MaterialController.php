@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class MaterialController extends Controller
 {
@@ -23,7 +24,8 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        return view('materialsList');
+        $materials = DB::table('materials')->get();
+        return view('materialsList', compact('materials'));
     }
 
     public function post()
