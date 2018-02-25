@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 
-class MaterialController extends Controller
+class DetailController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,12 +25,11 @@ class MaterialController extends Controller
     public function index()
     {
         $materials = DB::table('materials')->get();
-        return view('materialsList', compact('materials'));
+        return view('detailsList', compact('materials'));
     }
 
-    public function post(Request $request)
+    public function post()
     {
-        dd($request);
         return "Создать модель базы данных";
     }
 }

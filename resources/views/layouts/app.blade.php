@@ -29,7 +29,7 @@
                             @auth
                                 <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Главная</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">История расчётов</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Детали</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('detail') }}">Детали</a></li>
                                 <li class="nav-item"><a class="nav-link" href="{{ route('material') }}">Материалы</a></li>
                             @endauth
                         </ul>
