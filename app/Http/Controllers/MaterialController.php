@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Material;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Contracts\Validation\Validator;
+use DB as Database;
 
 class MaterialController extends Controller
 {
@@ -24,13 +26,22 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materials = DB::table('materials')->get();
+        $materials = Database::table('materials')->get();
         return view('materialsList', compact('materials'));
     }
 
     public function post(Request $request)
     {
-        dd($request);
-        return "Создать модель базы данных";
+        $material = new Material();
+        $this->validate($request, [
+            'name' => 'required|unique:materials|max:255',
+            'unit' => 'required|max:30',
+            'unitPrice' => 'required|numeric|max:10',
+        ]);
+        $material->Insert($request);
+        $materials = Database::table('materials')->get();
+        if ($material->invalidData)
+            return $view = redirect('home')->withErrors('Invalid form data');
+        return view('material', compact('materials'));
     }
 }
