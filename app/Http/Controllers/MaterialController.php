@@ -33,15 +33,15 @@ class MaterialController extends Controller
     public function post(Request $request)
     {
         $material = new Material();
-        $this->validate($request, [
+        /*$this->validate($request, [
             'name' => 'required|unique:materials|max:255',
             'unit' => 'required|max:30',
             'unitPrice' => 'required|numeric|max:10',
-        ]);
+        ]);*/
         $material->Insert($request);
         $materials = Database::table('materials')->get();
         if ($material->invalidData)
-            return $view = redirect('home')->withErrors('Invalid form data');
-        return view('material', compact('materials'));
+            return redirect('home')->withErrors('Invalid form data');
+        return redirect('home');
     }
 }

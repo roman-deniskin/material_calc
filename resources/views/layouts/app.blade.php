@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/user.css') }}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 </head>
 <body>
@@ -81,6 +82,10 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/lib/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/lib/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/lib/tether.min.js') }}"></script>
+    <script src="{{ asset('js/lib/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/run.js') }}"></script>
 </body>
 </html>

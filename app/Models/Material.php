@@ -20,12 +20,12 @@ class Material extends Model
 
     public function Insert($data)
     {
-        $this->name = strtoupper($data->name);
-        $this->unit = strtolower($data->unit);
+        $this->name = $data->name;
+        $this->unit = $data->unit;
         $this->unitPrice = $data->unitPrice;
         try {
             DB::table('materials')->insert(
-                ['name' => $name, 'unit' => $unit, 'unitPrice' => $unitPrice]
+                ['name' => $this->name, 'unit' => $this->unit, 'unitPrice' => $this->unitPrice]
             );
         } catch(\Exception $e) {
             DB::rollback();

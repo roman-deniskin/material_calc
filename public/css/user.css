@@ -1,0 +1,18 @@
+.btn-combined-group {
+    padding-left: 0;
+}
+.btn-combined-elem {
+    width: 50%;
+    display: inline-block;
+    float: left;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    margin: 0;
+    padding: .375rem .2rem;
+}
+.btn-combined {
+    float: left;
+    width: 50%;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}

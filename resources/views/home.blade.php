@@ -176,33 +176,47 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Материал</label>
+                            <fieldset class="material">
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">Материал</label>
 
-                                <div class="col-md-8">
-                                    <select class="form-control" name="material" id="">
-                                        @foreach ($materials as $material)
-                                            <option value="{{ $material->id }}">{{ $material->name }} - {{ $material->unitPrice }} руб. за {{ $material->unit }}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="material[1]" id="">
+                                            @foreach ($materials as $material)
+                                                <option value="{{ $material->id }}">{{ $material->name }} - {{ $material->unitPrice }} руб. за {{ $material->unit }}</option>
+                                            @endforeach
+                                        </select>
 
-                                    @if ($errors->has('unit'))
-                                        <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('unit') }}</strong>
-                                    </span>
-                                    @endif
+                                        @if ($errors->has('unit[1]'))
+                                            <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('unit[1]') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-2 btn-combined-group">
+                                        <input type="text" value="1" class="form-control{{ $errors->has('unitAmmount[1]') ? ' is-invalid' : '' }} btn-combined-elem" name="unitAmmount[1]" value="{{ old('unitAmmount[1]') }}" required>
+
+                                        @if ($errors->has('unitAmmount[1]'))
+                                            <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('unitAmmount[1]') }}</strong>
+                                        </span>
+                                        @endif
+                                        <button type="button" class="btn btn-success btn-combined">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </fieldset>
 
                             <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">Количество</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Наценка в %</label>
 
                                 <div class="col-md-8">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="unitAmmount" value="{{ old('unitAmmount') }}" required autofocus>
+                                    <input id="name" type="text" class="form-control{{ $errors->has('markup') ? ' is-invalid' : '' }}" name="name" value="{{ old('markup') }}" required autofocus>
 
-                                    @if ($errors->has('unitAmmount'))
+                                    @if ($errors->has('markup'))
                                         <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('unitAmmount') }}</strong>
+                                        <strong>{{ $errors->first('markup') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -212,14 +226,23 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Цена</label>
 
                                 <div class="col-md-8">
-                                    <input id="name" type="text" class="form-control" name="prime" value="0 руб." disabled>
+                                    <input id="name" type="text" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" name="name" value="{{ old('price') }}" required autofocus>
+
+                                    @if ($errors->has('price'))
+                                        <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('price') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                                <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
                                         Добавить
+                                    </button>
+                                    <button type="button" class="btn btn-success">
+                                        <i class="fas fa-cube"></i>
                                     </button>
                                 </div>
                             </div>

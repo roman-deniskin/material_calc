@@ -17,8 +17,9 @@ class CreateDetailsTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->integer('material_id')->unsigned();
-            $table->foreign('material_id')->references('id')->on('materials');;
-            $table->double('material_ammount');
+            $table->foreign('material_id')->references('id')->on('materials');
+            $table->integer('material_ammount_id')->unsigned();
+            $table->foreign('material_ammount_id')->references('id')->on('materials');
             $table->double('price');
             $table->timestamp('updated_at')->useCurrent();
             $table->timestamp('created_at')->useCurrent();
