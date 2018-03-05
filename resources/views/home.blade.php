@@ -9,7 +9,7 @@
 
                 <div class="card-body row">
                     <div class="col-md-6">
-                        <form method="POST" action="{{ route('material_post') }}">
+                        <form method="POST" class="product-form" action="{{ route('material_post') }}">
                             @csrf
                             <h3>Добавить продукт</h3>
                             <div class="form-group row">
@@ -159,7 +159,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <form method="POST" action="{{ route('material_post') }}">
+                        <form method="POST" class="detail-form" action="{{ route('material_post') }}">
                             @csrf
                             <h3>Добавить деталь</h3>
                             <div class="form-group row">
@@ -177,7 +177,7 @@
                             </div>
 
                             <fieldset class="material">
-                                <div class="form-group row">
+                                <div class="form-group row detail-wrapper elem1">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">Материал</label>
 
                                     <div class="col-md-6">
@@ -241,7 +241,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Добавить
                                     </button>
-                                    <button type="button" class="btn btn-success">
+                                    <button onclick="html.addDetailFieldset(this)" type="button" class="btn btn-success">
                                         <i class="fas fa-cube"></i>
                                     </button>
                                 </div>
@@ -250,7 +250,7 @@
                     </div>
 
                         <div class="col-md-6">
-                            <form method="POST" action="{{ route('material_post') }}">
+                            <form method="POST" class="material-form" action="{{ route('material_post') }}">
                                 @csrf
                                 <h3>Добавить материал</h3>
                                 <div class="form-group row">
