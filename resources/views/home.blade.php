@@ -196,12 +196,12 @@
                                     <div class="col-md-2 btn-combined-group">
                                         <input type="text" value="1" class="form-control{{ $errors->has('unitAmmount[1]') ? ' is-invalid' : '' }} btn-combined-elem" name="unitAmmount[1]" value="{{ old('unitAmmount[1]') }}" required>
 
-                                        @if ($errors->has('unitAmmount[1]'))
+                                        @if ($errors->has('unitAmount[1]'))
                                             <span class="invalid-feedback">
                                             <strong>{{ $errors->first('unitAmmount[1]') }}</strong>
                                         </span>
                                         @endif
-                                        <button type="button" class="btn btn-success btn-combined">
+                                        <button onclick="html.remoteMaterial(this);" type="button" class="btn btn-success btn-combined">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>

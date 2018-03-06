@@ -3,14 +3,29 @@ var html = {
         alert("Element added");
     },
     addDetailFieldset: function(obj) {
-        var detailHtml = '.' + $(obj).parents('form').attr('class') + ' .elem1';
-        detailHtml = $(detailHtml);
-        $('.elem1')
+        var lastElemClassName = $("fieldset.material .form-group.row.detail-wrapper:last-child").last().prop('class');
+        var elemClassName = $("fieldset.material .form-group.row.detail-wrapper:last-child");
+        var elemAmount = $("fieldset.material .form-group.row.detail-wrapper").length;
+        lastElemClassName = lastElemClassName.split(' ').pop().replace(/[^A-Za-z]/g,'');
+        var container = $('fieldset.material');
+        console.log(lastElemClassName);
+        $(elemClassName)
             .clone()
-            .removeClass("elem1")
-            .addClass("elem2")
-            .insertAfter( detailHtml );
-        detailHtml = null;
+            .removeClass(lastElemClassName + elemAmount)
+            .addClass(lastElemClassName + (elemAmount+1))
+            .appendTo(container);
+        $('.'+lastElemClassName + (elemAmount+1))
+            .find('select')
+            .attr('name', 'material[' + (elemAmount+1) + ']');
+        console.log('.'+lastElemClassName + (elemAmount+1));
+        $('.'+lastElemClassName + (elemAmount+1))
+            .find('input')
+            .attr('name', 'unitAmount[' + (elemAmount+1) + ']');
+        lastElemClassName = null;
+    },
+    remoteMaterial: function(obj) {
+        $(obj).parents().eq(1).remove();
+        //TODO: удалять не текущий элемент, а последний добавленный иначе механизм идёт вразнос
     },
     addProductFieldset: function(obj) {
         alert("Product added");
