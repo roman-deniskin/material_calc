@@ -1,14 +1,5 @@
 //TODO: переименовать файл в form.js, переименовать глоб. пер. в form
-(function($) {
-    $.fn.removeClassWild = function(mask) {
-        return this.removeClass(function(index, cls) {
-            var re = mask.replace(/\*/g, '\\S+');
-            return (cls.match(new RegExp('\\b' + re + '', 'g')) || []).join(' ');
-        });
-    };
-    //TODO: Убрать синглтон в remoteMaterial (в глобальном пространстве он не нужен и не является отдельной функцией)
-})(jQuery);
-var html = {
+var form = {
     addMaterialFieldset: function(obj) {
         alert("Element added");
     },
@@ -34,13 +25,30 @@ var html = {
         lastElemClassName = null;
     },
     remoteMaterial: function(obj) {
-        //$(obj).parents().eq(1).remove();
-        $(obj).parent('.btn-combined-group').parent('.form-group').remove();
-        $('fieldset.material').children().each(function(index, element){
+        $(obj).parents().eq(1).remove();
+        $('fieldset.material').children.each(function(index, element){
             $(element).removeClassWild("elem*").addClass('elem' + (index+1));
         });
+        $('fieldset.material').removeClassWild = function(mask) {
+            return this.removeClass(function(index, cls) {
+                var re = mask.replace(/\*/g, '\\S+');
+                return (cls.match(new RegExp('\\b' + re + '', 'g')) || []).join(' ');
+            });
+        };
     },
     addProductFieldset: function(obj) {
+        $(obj).parent('.btn-combined-group').parent('.form-group').remove();
+    },
+    changeWeight: function() {
         alert("Product added");
+    },
+    toltipInit: function() {
+        $('[data-toggle]').tooltip();
+    }
+};
+
+var html = {
+    addDetailFieldset: function() {
+        console.log(form.changeWeight());
     }
 };

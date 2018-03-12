@@ -23,6 +23,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/unit', 'UnitController@index')->name('unit');
+Route::post('unit', 'UnitController@post')->name('unit_post');
+
 Route::get('/material', 'MaterialController@index')->name('material');
 Route::post('material', 'MaterialController@post')->name('material_post');
 

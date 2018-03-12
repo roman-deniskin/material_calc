@@ -28,8 +28,9 @@ class DetailController extends Controller
         return view('detailsList', compact('materials'));
     }
 
-    public function post()
+    public function post(Request $request)
     {
+        dd($request);
         return "Создать модель базы данных";
     }
 }

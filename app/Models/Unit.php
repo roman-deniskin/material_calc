@@ -5,14 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Material extends Model
+class Unit extends Model
 {
-    public $invalidData; //Сохраняет исключение
 
     protected $name;
     protected $weight;
-    protected $unit;
-    protected $unitPrice;
 
     public function __invoke($data)
     {
@@ -21,13 +18,11 @@ class Material extends Model
 
     public function Insert($data)
     {
-        $this->name = $data->name;
-        $this->weight = $data->weight;
-        $this->unit = $data->unit;
-        $this->unitPrice = $data->unitPrice;
+        $this->name = $data->nameUnit;
+        $this->weight = $data->weightUnit;
         try {
-            DB::table('materials')->insert(
-                ['name' => $this->name, 'weight' => $this->weight, 'unit' => $this->unit, 'unitPrice' => $this->unitPrice]
+            DB::table('units')->insert(
+                ['name' => $this->name, 'weight' => $this->weight]
             );
         } catch(\Exception $e) {
             DB::rollback();

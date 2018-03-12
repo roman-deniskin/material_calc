@@ -20,14 +20,15 @@ class Material extends Model
 
     public function Insert($data)
     {
-        $this->name = $data->name;
-        $this->material = $data->material;
-        $this->materialAmount = $data->materialAmount;
+        $this->name = $data->detailName;
+            $this->materialId = $data->materialDetailId;
+        $this->materialAmount = $data->materialDetailAmount;
         $this->extraCharge = $data->extraCharge;
+        $this->priceCost = $data->priceCostDetail;
         $this->price = $data->price;
         try {
             DB::table('details')->insert(
-                ['materialId' => $this->materialId, 'unit' => $this->unit, 'unitPrice' => $this->unitPrice]
+                ['name' => $this->name, 'materialId' => $this->materialId, 'materialAmount' => $this->materialAmount, 'extraCharge' => $this->extraCharge, 'priceCost' => $this->priceCost, 'price' => $this->price]
             );
         } catch(\Exception $e) {
             DB::rollback();
