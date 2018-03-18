@@ -201,7 +201,7 @@
                                             <strong>{{ $errors->first('materialDetailAmount[1]') }}</strong>
                                         </span>
                                         @endif
-                                        <button onclick="form.remoteMaterial(this);" type="button" class="btn btn-success btn-combined">
+                                        <button onclick="Form.remoteMaterial(this);" type="button" class="btn btn-success btn-combined">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
@@ -263,10 +263,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Добавить
                                     </button>
-                                    <button onclick="form.addDetailFieldset(this)" type="button" class="btn btn-success">
-                                        <i class="fas fa-cube"></i>
-                                    </button>
-                                    <button onclick="html.addDetailFieldset(this)" type="button" class="btn btn-success">
+                                    <button onclick="Form.addDetailFieldset(this)" type="button" class="btn btn-success">
                                         <i class="fas fa-cube"></i>
                                     </button>
                                 </div>
@@ -340,7 +337,7 @@
                                 <div class="col-md-8">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i data-toggle="nameUnit" title="Полное наименование. Например: килограмм" class="fas fa-info-circle"></i></div>
+                                            <div class="input-group-text"><i rel="tooltip" data-placement="left" data-toggle="nameUnit" title="Полное наименование. Например: килограмм" class="fas fa-info-circle"></i></div>
                                         </div>
                                         <input id="name" type="text" class="form-control{{ $errors->has('nameUnit') ? ' is-invalid' : '' }}" name="nameUnit" value="{{ old('nameUnit') }}" required autofocus>
                                     </div>
@@ -359,7 +356,7 @@
                                 <div class="col-md-8">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text"><i data-toggle="aliasNameUnit" title="Например: кг" class="fas fa-info-circle"></i></div>
+                                            <div class="input-group-text"><i rel="tooltip" data-placement="left" data-toggle="aliasNameUnit" title="Например: кг" class="fas fa-info-circle"></i></div>
                                         </div>
                                         <input id="name" type="text" class="form-control{{ $errors->has('aliasNameUnit') ? ' is-invalid' : '' }}" name="aliasNameUnit" value="{{ old('aliasNameUnit') }}" required autofocus>
                                     </div>

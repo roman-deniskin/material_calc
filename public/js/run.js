@@ -1,5 +1,5 @@
 //TODO: переименовать файл в form.js, переименовать глоб. пер. в form
-var form = {
+var Form = {
     addMaterialFieldset: function(obj) {
         alert("Element added");
     },
@@ -44,11 +44,5 @@ var form = {
     },
     toltipInit: function() {
         $('[data-toggle]').tooltip();
-    }
-};
-
-var html = {
-    addDetailFieldset: function() {
-        console.log(form.changeWeight());
     }
 };

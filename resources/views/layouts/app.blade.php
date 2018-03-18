@@ -86,6 +86,7 @@
     <script src="{{ asset('js/lib/jquery-ui.js') }}"></script>
     <script src="{{ asset('js/lib/tether.min.js') }}"></script>
     <script src="{{ asset('js/lib/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/init.js') }}"></script>
     <script src="{{ asset('js/run.js') }}"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 function init() {
-    $(document).ready(function(){
-        
-    });
+    $('[rel="tooltip"]').tooltip();
 }
+
+init();
