@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Material extends Model
+class Detail extends Model
 {
     public $invalidData; //Сохраняет исключение
 
@@ -21,11 +21,14 @@ class Material extends Model
     public function Insert($data)
     {
         $this->name = $data->detailName;
-            $this->materialId = $data->materialDetailId;
+        $this->materialId = $data->materialDetailId;
         $this->materialAmount = $data->materialDetailAmount;
         $this->extraCharge = $data->extraCharge;
         $this->priceCost = $data->priceCostDetail;
         $this->price = $data->price;
+        $materialAmount = [
+            ''
+        ];
         try {
             DB::table('details')->insert(
                 ['name' => $this->name, 'materialId' => $this->materialId, 'materialAmount' => $this->materialAmount, 'extraCharge' => $this->extraCharge, 'priceCost' => $this->priceCost, 'price' => $this->price]

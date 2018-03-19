@@ -183,7 +183,7 @@
                                     <div class="col-md-6">
                                         <select class="form-control" name="materialDetailId[1]" id="material-detail">
                                             @foreach ($materials as $material)
-                                                <option data-weight="{{ $material->weight }}" value="{{ $material->id }}">{{ $material->name }} - {{ $material->unitPrice }} руб. за {{ $material->unit }}</option>
+                                                <option data-weight="{{ $material->unitWeight }}" value="{{ $material->id }}">{{ $material->name }} - {{ $material->unitPrice }} руб. за {{ $material->unit }}</option>
                                             @endforeach
                                         </select>
 
@@ -279,7 +279,7 @@
                                 <label for="name" class="col-md-4 col-form-label text-md-right">Наименование</label>
 
                                 <div class="col-md-8">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                                     @if ($errors->has('name'))
                                         <span class="invalid-feedback">
@@ -293,12 +293,54 @@
                                 <label for="unit" class="col-md-4 col-form-label text-md-right">Единица измерения</label>
 
                                 <div class="col-md-8">
-                                    <input id="unit" type="text" class="form-control{{ $errors->has('unit') ? ' is-invalid' : '' }}" name="unit" value="{{ old('unit') }}" required autofocus>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i rel="tooltip" data-placement="left" data-toggle="unit" title="Полное наименование. Например: килограмм" class="fas fa-info-circle"></i></div>
+                                        </div>
+                                        <input id="name" type="text" class="form-control{{ $errors->has('unit') ? ' is-invalid' : '' }}" name="unit" value="{{ old('unit') }}" required autofocus>
+                                    </div>
 
                                     @if ($errors->has('unit'))
                                         <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('unit') }}</strong>
-                                    </span>
+                                            <strong>{{ $errors->first('unit') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="unitAlias" class="col-md-4 col-form-label text-md-right">Краткое обозначение</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i rel="tooltip" data-placement="left" data-toggle="aliasUnitName" title="Например: кг" class="fas fa-info-circle"></i></div>
+                                        </div>
+                                        <input id="name" type="text" class="form-control{{ $errors->has('unitAlias') ? ' is-invalid' : '' }}" name="unitAlias" value="{{ old('unitAlias') }}" required autofocus>
+                                    </div>
+
+                                    @if ($errors->has('unitAlias'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('unitAlias') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="unitWeight" class="col-md-4 col-form-label text-md-right">Вес на единицу</label>
+
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text"><i rel="tooltip" data-placement="left" data-toggle="unitWeight" title="Вес в килограммах на еденицу измерения" class="fas fa-info-circle"></i></div>
+                                        </div>
+                                        <input id="weightUnit" type="text" class="form-control{{ $errors->has('unitWeight') ? ' is-invalid' : '' }}" name="unitWeight" value="{{ old('unitWeight') }}" required autofocus>
+                                    </div>
+                                    @if ($errors->has('unitWeight'))
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('unitWeight') }}</strong>
+                                        </span>
                                     @endif
                                 </div>
                             </div>
@@ -313,72 +355,6 @@
                                         <span class="invalid-feedback">
                                         <strong>{{ $errors->first('unitPrice') }}</strong>
                                     </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Добавить
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="col-md-6">
-                        <form method="POST" class="material-form" action="{{ route('unit_post') }}">
-                            @csrf
-                            <h3>Добавить единицу измерения</h3>
-                            <div class="form-group row">
-                                <label for="nameUnit" class="col-md-4 col-form-label text-md-right">Единица измерения</label>
-
-                                <div class="col-md-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text"><i rel="tooltip" data-placement="left" data-toggle="nameUnit" title="Полное наименование. Например: килограмм" class="fas fa-info-circle"></i></div>
-                                        </div>
-                                        <input id="name" type="text" class="form-control{{ $errors->has('nameUnit') ? ' is-invalid' : '' }}" name="nameUnit" value="{{ old('nameUnit') }}" required autofocus>
-                                    </div>
-
-                                    @if ($errors->has('nameUnit'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('nameUnit') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="nameUnit" class="col-md-4 col-form-label text-md-right">Краткое обозначение</label>
-
-                                <div class="col-md-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text"><i rel="tooltip" data-placement="left" data-toggle="aliasNameUnit" title="Например: кг" class="fas fa-info-circle"></i></div>
-                                        </div>
-                                        <input id="name" type="text" class="form-control{{ $errors->has('aliasNameUnit') ? ' is-invalid' : '' }}" name="aliasNameUnit" value="{{ old('aliasNameUnit') }}" required autofocus>
-                                    </div>
-
-                                    @if ($errors->has('aliasNameUnit'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('aliasNameUnit') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="weightUnit" class="col-md-4 col-form-label text-md-right">Вес на единицу</label>
-
-                                <div class="col-md-8">
-                                    <input id="weightUnit" type="text" class="form-control{{ $errors->has('weightUnit') ? ' is-invalid' : '' }}" name="weightUnit" value="{{ old('weightUnit') }}" required autofocus>
-
-                                    @if ($errors->has('weightUnit'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('weightUnit') }}</strong>
-                                        </span>
                                     @endif
                                 </div>
                             </div>

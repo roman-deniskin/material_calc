@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Detail;
 use Illuminate\Http\Request;
-use DB;
+use DB as Database;
 
 class DetailController extends Controller
 {
@@ -30,7 +31,16 @@ class DetailController extends Controller
 
     public function post(Request $request)
     {
-        dd($request);
-        return "Создать модель базы данных";
+        $detail = new Detail();
+        /*$this->validate($request, [
+            'name' => 'required|unique:materials|max:255',
+            'unit' => 'required|max:30',
+            'unitPrice' => 'required|numeric|max:10',
+        ]);*/
+        $detail->Insert($request);
+        $materials = Database::table('details')->get();
+        if ($detail->invalidData)
+            return redirect('home')->withErrors('Invalid form data');
+        return redirect('home');
     }
 }

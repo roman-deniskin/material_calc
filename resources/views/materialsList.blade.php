@@ -15,6 +15,7 @@
                                 <th>Id</th>
                                 <th>Наименование</th>
                                 <th>Единица измерения</th>
+                                <th>Вес единицы (кг)</th>
                                 <th>Цена за единицу</th>
                                 <th>Добавлено</th>
                                 <th>Последнее изменение</th>
@@ -27,7 +28,8 @@
                                 <tr>
                                     <td>{{ $material->id }}</td>
                                     <td>{{ $material->name }}</td>
-                                    <td>{{ $material->unit }}</td>
+                                    <td>{{ $material->unit }} ({{ $material->unitAlias }})</td>
+                                    <td>{{ $material->unitWeight }}</td>
                                     <td>{{ $material->unitPrice }}</td>
                                     <td>{{ $material->created_at }}</td>
                                     <td>{{ $material->updated_at }}</td>
