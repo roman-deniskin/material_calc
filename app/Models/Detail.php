@@ -20,6 +20,8 @@ class Detail extends Model
 
     public function Insert($data)
     {
+        var_dump($_POST);
+        exit;
         $this->name = $data->detailName;
         $this->materialId = $data->materialDetailId;
         $this->materialAmount = $data->materialDetailAmount;
@@ -29,10 +31,16 @@ class Detail extends Model
         $materialAmount = [
             ''
         ];
+        dd($data);
         try {
-            DB::table('details')->insert(
-                ['name' => $this->name, 'materialId' => $this->materialId, 'materialAmount' => $this->materialAmount, 'extraCharge' => $this->extraCharge, 'priceCost' => $this->priceCost, 'price' => $this->price]
-            );
+            DB::transaction(function () {
+                DB::table('details')->insert(
+                    ['name' => $this->name, 'materialId' => $this->materialId, 'materialAmount' => $this->materialAmount, 'extraCharge' => $this->extraCharge, 'priceCost' => $this->priceCost, 'price' => $this->price]
+                );
+                DB::table('materials_stock')->insert(
+                    ['material_id' => $this->materialId, 'detail_id' => $this->materialId, 'materialAmount' => $this->materialAmount, 'extraCharge' => $this->extraCharge, 'priceCost' => $this->priceCost, 'price' => $this->price]
+                );
+            }, 5);
         } catch(\Exception $e) {
             DB::rollback();
             $this->invalidData = true;

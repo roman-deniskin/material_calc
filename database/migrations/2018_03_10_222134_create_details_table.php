@@ -16,10 +16,6 @@ class CreateDetailsTable extends Migration
         Schema::create('details', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
-            $table->integer('material_id')->unsigned();
-            $table->foreign('material_id')->references('id')->on('materials');
-            $table->integer('material_amount_id')->unsigned();
-            $table->foreign('material_amount_id')->references('id')->on('materials');
             $table->double('extraCharge')->default('10');
             $table->double('price');
             $table->timestamp('updated_at')->useCurrent();

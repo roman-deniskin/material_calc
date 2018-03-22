@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMaterialsAmountTable extends Migration
+class CreateMaterialsStockTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateMaterialsAmountTable extends Migration
      */
     public function up()
     {
-        Schema::create('materials_amount', function (Blueprint $table) {
-            $table->integer('material_id')->unsigned()->nullable();
+        Schema::create('materials_stock', function (Blueprint $table) {
+            $table->integer('material_id')->unsigned();
             $table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade');;
-            $table->integer('detail_id')->unsigned();
+            $table->integer('detail_id')->unsigned()->nullable();
             $table->foreign('detail_id')->references('id')->on('details')->onDelete('cascade');
             //$table->integer('product_id')->unsigned();
             //$table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
@@ -31,6 +31,6 @@ class CreateMaterialsAmountTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('materials_amount');
+        Schema::dropIfExists('materials_stock');
     }
 }

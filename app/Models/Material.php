@@ -25,8 +25,8 @@ class Material extends Model
         $this->name = $data->name;
         $this->unit = $data->unit;
         $this->unitAlias = $data->unitAlias;
-        $this->unitWeight = $data->unitWeight;
-        $this->unitPrice = $data->unitPrice;
+        $this->unitWeight = preg_replace("[,/*]", '.', $data->unitWeight);
+        $this->unitPrice = preg_replace("[,/*]", '.', $data->unitPrice);
         try {
             DB::table('materials')->insert(
                 ['name' => $this->name, 'unit' => $this->unit, 'unitAlias' => $this->unitAlias, 'unitWeight' => $this->unitWeight, 'unitPrice' => $this->unitPrice]
@@ -38,5 +38,9 @@ class Material extends Model
             //throw new Exception('Данные были переданы в неправильном формате и не сохранятся в базу данных.'); // throw the original exception
         }
     }
-    
+
+    public static function GetMaterialList() {
+        $materials = DB::table('materials')->get(['unitWeight', 'id', 'name', 'unitPrice', 'unit']);
+        return $materials;
+    }
 }
