@@ -181,24 +181,24 @@
                                     <label for="material-detail" class="col-md-4 col-form-label text-md-right">Материал</label>
 
                                     <div class="col-md-6">
-                                        <select class="form-control" name="materialDetailId[1]" id="material-detail">
+                                        <select class="form-control" name="materialDetailId[]" id="material-detail">
                                             @foreach ($materials as $material)
                                                 <option data-weight="{{ $material->unitWeight }}" value="{{ $material->id }}">{{ $material->name }} - {{ $material->unitPrice }} руб. за {{ $material->unit }}</option>
                                             @endforeach
                                         </select>
 
-                                        @if ($errors->has('materialDetail[1]'))
+                                        @if ($errors->has('materialDetail[]'))
                                             <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('materialDetail[1]') }}</strong>
+                                            <strong>{{ $errors->first('materialDetail[]') }}</strong>
                                         </span>
                                         @endif
                                     </div>
                                     <div class="col-md-2 btn-combined-group">
-                                        <input id="materialAmount" type="text" value="1" class="form-control{{ $errors->has('materialDetailAmount[1]') ? ' is-invalid' : '' }} btn-combined-elem" name="materialDetailAmount[1]" value="{{ old('materialDetailAmount[1]') }}" required>
+                                        <input id="materialAmount" type="text" value="1" class="form-control{{ $errors->has('materialDetailAmount[]') ? ' is-invalid' : '' }} btn-combined-elem" name="materialDetailAmount[]" value="{{ old('materialDetailAmount[]') }}" required>
 
-                                        @if ($errors->has('materialDetailAmount[1]'))
+                                        @if ($errors->has('materialDetailAmount[]'))
                                             <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('materialDetailAmount[1]') }}</strong>
+                                            <strong>{{ $errors->first('materialDetailAmount[]') }}</strong>
                                         </span>
                                         @endif
                                         <button onclick="Form.remoteMaterial(this);" type="button" class="btn btn-success btn-combined">
@@ -254,7 +254,7 @@
                                 <label for="price" class="col-md-4 col-form-label text-md-right">Цена</label>
 
                                 <div class="col-md-8">
-                                    <input id="price" type="text" class="form-control" name="price" value="0 руб." disabled>
+                                    <input id="priceDetail" type="text" class="form-control" name="priceDetail" value="0 руб." disabled>
                                 </div>
                             </div>
 

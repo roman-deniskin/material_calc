@@ -25,8 +25,8 @@ class DetailController extends Controller
      */
     public function index()
     {
-        $materials = DB::table('materials')->get();
-        return view('detailsList', compact('materials'));
+        $details = \App\Models\Detail::GetMaterialsInDetails();
+        return view('detailsList', ['data' => $details]);
     }
 
     public function post(Request $request)

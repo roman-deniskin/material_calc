@@ -14,9 +14,9 @@ class CreateMaterialsStockTable extends Migration
     public function up()
     {
         Schema::create('materials_stock', function (Blueprint $table) {
-            $table->integer('material_id')->unsigned();
+            $table->integer('material_id')->unsigned()->index();
             $table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade');;
-            $table->integer('detail_id')->unsigned()->nullable();
+            $table->integer('detail_id')->unsigned()->nullable()->index();
             $table->foreign('detail_id')->references('id')->on('details')->onDelete('cascade');
             //$table->integer('product_id')->unsigned();
             //$table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

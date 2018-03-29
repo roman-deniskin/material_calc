@@ -26,7 +26,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materials = Database::table('materials')->get();
+        $materials = \App\Models\Material::GetMaterialFullList();
         return view('materialsList', compact('materials'));
     }
 

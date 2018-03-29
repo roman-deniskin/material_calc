@@ -6,7 +6,6 @@ var Form = {
     addDetailFieldset: function(obj) {
         var lastElemClassName = $("fieldset.material .form-group.row.detail-wrapper").last().prop('class');
         var elemClassName = $("fieldset.material .form-group.row.detail-wrapper:last-child");
-        //var elemAmount = $("fieldset.material .form-group.row.detail-wrapper").length;
         var elemAmount = Number(lastElemClassName.split(' ').pop().replace(/\D+/g,""))
         lastElemClassName = lastElemClassName.split(' ').pop().replace(/[^A-Za-z]/g,'');
         var container = $('fieldset.material');
@@ -16,12 +15,10 @@ var Form = {
             .removeClass(lastElemClassName + elemAmount)
             .addClass(lastElemClassName + (elemAmount+1))
             .appendTo(container);
-        $('.'+lastElemClassName + (elemAmount+1))
-            .find('select')
-            .attr('name', 'material[' + (elemAmount+1) + ']');
-        $('.'+lastElemClassName + (elemAmount+1))
-            .find('input')
-            .attr('name', 'unitAmount[' + (elemAmount+1) + ']');
+        $('.'+lastElemClassName + (elemAmount))
+            .find('select');
+        $('.'+lastElemClassName + (elemAmount))
+            .find('input');
         lastElemClassName = null;
     },
     remoteMaterial: function(obj) {

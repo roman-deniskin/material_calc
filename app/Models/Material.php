@@ -22,9 +22,9 @@ class Material extends Model
 
     public function Insert($data)
     {
-        $this->name = $data->name;
-        $this->unit = $data->unit;
-        $this->unitAlias = $data->unitAlias;
+        $this->name = ucfirst($data->name);
+        $this->unit = ucfirst($data->unit);
+        $this->unitAlias = ucfirst($data->unitAlias);
         $this->unitWeight = preg_replace("[,/*]", '.', $data->unitWeight);
         $this->unitPrice = preg_replace("[,/*]", '.', $data->unitPrice);
         try {
@@ -41,6 +41,11 @@ class Material extends Model
 
     public static function GetMaterialList() {
         $materials = DB::table('materials')->get(['unitWeight', 'id', 'name', 'unitPrice', 'unit']);
+        return $materials;
+    }
+
+    public static function GetMaterialFullList() {
+        $materials = DB::table('materials')->get();
         return $materials;
     }
 }
