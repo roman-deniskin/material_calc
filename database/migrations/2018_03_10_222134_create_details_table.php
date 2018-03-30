@@ -16,6 +16,7 @@ class CreateDetailsTable extends Migration
         Schema::create('details', function (Blueprint $table) {
             $table->increments('id');
             $table->text('name');
+            $table->double('weight');
             $table->double('extraCharge')->default('10');
             $table->double('price');
             $table->timestamp('updated_at')->useCurrent();

@@ -251,10 +251,10 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="price" class="col-md-4 col-form-label text-md-right">Цена</label>
+                                <label for="priceDetail" class="col-md-4 col-form-label text-md-right">Цена</label>
 
                                 <div class="col-md-8">
-                                    <input id="priceDetail" type="text" class="form-control" name="priceDetail" value="0 руб." disabled>
+                                    <input id="priceDetail" type="text" class="form-control" name="priceDetail" value="700" readonly="readonly">
                                 </div>
                             </div>
 
