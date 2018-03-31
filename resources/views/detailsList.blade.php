@@ -27,54 +27,38 @@
                             </thead>
                             <tbody>
                             <?php
-                                $previousDetailId = null;
-                                    $i = 0;
-                                    foreach ($data as $detailData) {
-                                        $details->detailId = $detailData->detail_id;
-                                        $details->detailName = $detailData->detailName;
-                                        $details->materials .= '<a href="/material?id=' . $detailData->material_id . '">' . $detailData->materialName . '</a><br>';
-                                        $details->amount .= $detailData->amount;
-                                        $details->unit .= '<p>' . $detailData->unit . '(' . $detailData->unitAlias . ')</p><br>';
-                                        $details->extraCharge .= $detailData->extraCharge;
-                                        $details->price .= $detailData->price;
-                                        $details->unitWeight .= $detailData->unitWeight;
-                                        $details->unitPrice .= $detailData->unitPrice;
-                                        $i++;
-                                    }
+                            $previousDetailId = null;
+                            $i = 0;
+                            $details = [];
+                            foreach ($data as $detailData) {
+                                $details[$i]['detailId'] = $detailData->detail_id;
+                                $details[$i]['detailName'] = $detailData->detailName;
+                                @$details[$i]['materials'] .= '<a href="/material?id=' . $detailData->material_id . '">' . $detailData->materialName . '</a><br>';// Множ
+                                @$details[$i]['amount'] .= '<p>' . $detailData->amount . '</p>'; //Множ
+                                @$details[$i]['unit'] .= '<p>' . $detailData->unit . '(' . $detailData->unitAlias . ')</p><br>'; // Множ
+                                $details[$i]['extraCharge'] = $detailData->extraCharge;
+                                $details[$i]['price'] = $detailData->price;
+                                @$details[$i]['unitWeight'] .= '<p>' . $detailData->unitWeight . '</p>'; // Множ
+                                @$details[$i]['unitPrice'] .= '<p>' . $detailData->unitPrice . '</p>'; // Множ
+                                if ($previousDetailId != $detailData->detail_id && $previousDetailId != null) {
+                                    $i++;
+                                    $previousDetailId = $detailData->detail_id;
+                                }
+                            }
                             ?>
-                            {{ $previousDetailId = null }}
-                            @foreach ($data as $detailData)
-                                @if (@$previousDetailId != $detailData->detail_id)
-                                    $detailId =. $detailData->detail_id;
-                                    $detailName =. $detailData->detailName;
-                                    $materials =. '<td><a href="/material?id=' . $detailData->material_id . '">' . $detailData->materialName . '</a></td>';
-                                    $materialId =. $detailData->materialName;
-                                    $amount =. $detailData->amount;
-                                    $unit =. $detailData->unit;
-                                    $unitAlias =. $detailData->unitAlias;
-                                @else
-                                @endif
+                            @foreach ($details as $detailData)
                                 <tr>
-                                    @if (@$previousDetailId != $detailData->detail_id)
-                                    <td>{{ $detailData->detail_id }}</td>
-                                    <td><a href="/material?{{ $detailData->detail_id }}">{{ $detailData->detailName }}</a></td>
-                                    <td><a href="/material?{{ $detailData->material_id }}">{{ $detailData->materialName }}</a></td>
-                                    <td> {{ $detailData->amount }} </td>
-                                    <td>{{ $detailData->unit }} ({{ $detailData->unitAlias }})</td>
-                                    @else
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    @endif
-                                    <td>{{ $detailData->extraCharge }}</td>
-                                    <td>{{ $detailData->price }}</td>
-                                    <td>{{ $detailData->unitWeight }}</td>
-                                    <td>{{ $detailData->unitPrice }}</td>
+                                    <td>{{ $detailData['detailId'] }}</td>
+                                    <td><a href="/material?{{ $detailData['detailId'] }}">{{ $detailData['detailName'] }}</a></td>
+                                    <td>{!! $detailData['materials'] !!}</td>
+                                    <td>{!! $detailData['amount'] !!}</td>
+                                    <td>{!! $detailData['unit'] !!}</td>
+                                    <td>{{ $detailData['extraCharge'] }}</td>
+                                    <td>{{ $detailData['price'] }}</td>
+                                    <td>{!! $detailData['unitWeight'] !!}</td>
+                                    <td>{!! $detailData['unitPrice'] !!}</td>
                                     <td><button type="button" class="btn btn-primary btn-xs"><i class="fas fa-exchange-alt"></i></button></td>
                                     <td><button type="button" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i></button></td>
-                                    {{ $previousDetailId = $detailData->detail_id }}
                                 </tr>
                             @endforeach
                             </tbody>
