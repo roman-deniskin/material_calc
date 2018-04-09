@@ -3,8 +3,9 @@ var Form = {
     addMaterialFieldset: function(obj) {
         alert("Element added");
     },
-    addDetailFieldset: function(obj) {
-        var lastElemClassName = $("fieldset.material .form-group.row.detail-wrapper").last().prop('class');
+    addDetailFieldset: function(formName) {
+        console.log(formName + " fieldset.material .form-group.row.detail-wrapper");
+        var lastElemClassName = $(formName + " fieldset.material .form-group.row.detail-wrapper").last().prop('class');
         var elemClassName = $("fieldset.material .form-group.row.detail-wrapper:last-child");
         var elemAmount = Number(lastElemClassName.split(' ').pop().replace(/\D+/g,""))
         lastElemClassName = lastElemClassName.split(' ').pop().replace(/[^A-Za-z]/g,'');

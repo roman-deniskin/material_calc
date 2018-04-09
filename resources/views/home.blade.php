@@ -96,23 +96,37 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="material-product" class="col-md-4 col-form-label text-md-right">Материал</label>
+                            <fieldset class="material">
+                                <div class="form-group row detail-wrapper elem1">
+                                    <label for="material-detail" class="col-md-4 col-form-label text-md-right">Материал</label>
 
-                                <div class="col-md-8">
-                                    <select class="form-control" name="material" id="material-product">
-                                        @foreach ($materials as $material)
-                                            <option value="{{ $material->id }}">{{ $material->name }} - {{ $material->unitPrice }} руб. за {{ $material->unit }}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="materialDetailId[]" id="material-detail">
+                                            @foreach ($materials as $material)
+                                                <option data-weight="{{ $material->unitWeight }}" value="{{ $material->id }}">{{ $material->name }} - {{ $material->unitPrice }} руб. за {{ $material->unit }}</option>
+                                            @endforeach
+                                        </select>
 
-                                    @if ($errors->has('material-product'))
-                                        <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('material-product') }}</strong>
-                                    </span>
-                                    @endif
+                                        @if ($errors->has('materialDetail[]'))
+                                            <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('materialDetail[]') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-2 btn-combined-group">
+                                        <input id="materialAmount" type="text" value="1" class="form-control{{ $errors->has('materialDetailAmount[]') ? ' is-invalid' : '' }} btn-combined-elem" name="materialDetailAmount[]" value="{{ old('materialDetailAmount[]') }}" required>
+
+                                        @if ($errors->has('materialDetailAmount[]'))
+                                            <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('materialDetailAmount[]') }}</strong>
+                                        </span>
+                                        @endif
+                                        <button onclick="Form.remoteMaterial(this);" type="button" class="btn btn-success btn-combined">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                            </fieldset>
 
                             <div class="form-group row">
                                 <label for="detail-product" class="col-md-4 col-form-label text-md-right">Деталь</label>
@@ -263,7 +277,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Добавить
                                     </button>
-                                    <button onclick="Form.addDetailFieldset(this)" type="button" class="btn btn-success">
+                                    <button onclick="Form.addDetailFieldset('.product-form')" type="button" class="btn btn-success">
                                         <i class="fas fa-cube"></i>
                                     </button>
                                 </div>

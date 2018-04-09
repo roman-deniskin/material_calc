@@ -12,7 +12,7 @@ class Detail extends Model
     protected $name;
     protected $unit;
     protected $unitPrice;
-
+    protected $materials;
     public function __invoke($data)
     {
         // TODO: Implement __invoke() method.
@@ -24,39 +24,40 @@ class Detail extends Model
         $this->weight = $data->weight;
         $this->extraCharge = $data->priceCostDetail;
         $this->price = $data->priceDetail;
-        $i = 0;
         $this->materials = [];
-        foreach ($data->materialDetailId as $key => $detailId) {
-            $this->materials[$i]['materialId'] = array_merge($this->materials[$i]['materialId'], $detailId);
-
-
-            
-            $i++;
+        foreach ($data->materialDetailId as $i => $materialDetailId) {
+            if (isset($data->materialDetailId[$i]))
+                $materialId = $data->materialDetailId[$i];
+            if (isset($data->materialDetailAmount[$i]))
+                $materialAmount = $data->materialDetailAmount[$i];
+            $this->materials[$i] = [
+                'material' => [
+                    'id' => $materialId,
+                    'amount' => $materialAmount,
+                ]
+            ];
         }
-        $this->materials = array_fill_keys('materialAmount', $data->materialDetailAmount);
-        var_dump($data->materialDetailId);
-        exit;
+        echo '<pre>';
         //$this->materials['materialId'] = array_map(, $materialDetailId)
-        foreach ($data->materialDetailId as $key => $materialDetailId) {
-            @$this->materials[$key]['materialId'] = $materialDetailId;
+        /*foreach ($data->materialDetailId as $key => $materialDetailId) {
+            @$this->materials[] = [[$key]['materialId'] => $materialDetailId];
+            @$this->materials[] = [[$key]['materialAmount'] => $data->materialDetailAmount[$key]['materialAmount']];
         }
+        print_r($this->materials);
         foreach ($data->materialDetailAmount as $key => $materialDetailAmount) {
             @$this->materials[$key]['materialAmount'] = $materialDetailId;
-        }
+        }*/
         //$this->materials = ['materialId' => $data->materialDetailId, 'materialAmount' => $data->materialDetailAmount];
         try {
             DB::transaction(function ($data) {
                 $this->detailId = DB::table('details')->insertGetId(
-                    ['name' => $this->detailName, 'weight' => $this->weight, 'extraCharge' => $this->extraCharge, 'price' => $this->price]
+                    ['name' => $this->detailName, 'extraCharge' => $this->extraCharge, 'price' => $this->price]
                 );
                 foreach ($this->materials as $key => $material) {
-                    var_dump($material->materialDetailId);
-                    exit;
+
                     DB::table('materials_stock')->insert(
-                        ['material_id' => $material->materialId, 'detail_id' => $this->detailId, 'amount' => $material->materialAmount]
+                        ['material_id' => $material['material']['id'], 'detail_id' => $this->detailId, 'amount' => $material['material']['amount']]
                     );
-                    echo $material;
-                    exit;
                 }
             }, 5);
         } catch(\Exception $e) {
