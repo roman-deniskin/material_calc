@@ -40,7 +40,7 @@ class Material extends Model
     }
 
     public static function GetMaterialList() {
-        $materials = DB::table('materials')->get(['unitWeight', 'id', 'name', 'unitPrice', 'unit']);
+        $materials = DB::table('materials')->get(['unitWeight', 'id', 'name', 'unitPrice', 'unit', 'unitAlias']);
         return $materials;
     }
 

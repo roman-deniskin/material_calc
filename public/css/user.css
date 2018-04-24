@@ -1,3 +1,6 @@
+html {
+    min-height: 400px;
+}
 .btn-combined-group {
     padding-left: 0;
 }
@@ -15,4 +18,63 @@
     width: 50%;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
+}
+
+.devices-wrapper {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    min-width: 300px;
+    max-width: 1140px;
+    height: 60vh;
+    min-height: 300px;
+}
+.devices-wrapper .laptop {
+    background-image: url(../img/welcome/device-laptop.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: inherit;
+    height: 100%;
+    position: absolute;
+    left: 0;
+}
+.devices-wrapper .phone {
+    background-image: url(../img/welcome/device-phone.png);
+    background-size: contain;
+    background-position: right;
+    background-repeat: no-repeat;
+    width: inherit;
+    max-width: 20%;
+    height: 65%;
+    position: absolute;
+    right: 150px;
+    bottom: 0;
+}
+@media (min-width: 1920px) {
+    .devices-wrapper .phone {
+        right: 25%;
+    }
+}
+@media (max-width: 1920px) {
+    .devices-wrapper .phone {
+        right: 15%;
+    }
+}
+@media (max-width: 1200px) {
+    .devices-wrapper .phone {
+        right: 10%;
+        max-width: 25%;
+    }
+}
+@media (max-width: 992px) {
+    .devices-wrapper .phone {
+        right: 90px;
+    }
+}
+@media (max-width: 768px) {
+    .devices-wrapper .phone {
+        right: 40px;
+        max-width: 25%;
+    }
 }

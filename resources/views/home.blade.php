@@ -167,6 +167,9 @@
                                     <button type="submit" class="btn btn-primary">
                                         Добавить
                                     </button>
+                                    <button onclick="Form.addDetailFieldset('.product-form')" type="button" class="btn btn-success">
+                                        <i class="fas fa-cube"></i>
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -197,7 +200,7 @@
                                     <div class="col-md-6">
                                         <select class="form-control" name="materialDetailId[]" id="material-detail">
                                             @foreach ($materials as $material)
-                                                <option data-weight="{{ $material->unitWeight }}" value="{{ $material->id }}">{{ $material->name }} - {{ $material->unitPrice }} руб. за {{ $material->unit }}</option>
+                                                <option data-weight="{{ $material->unitWeight }}" value="{{ $material->id }}">{{ $material->name }} - {{ $material->unitPrice }} руб. за {{ $material->unitAlias }}</option>
                                             @endforeach
                                         </select>
 
@@ -268,7 +271,7 @@
                                 <label for="priceDetail" class="col-md-4 col-form-label text-md-right">Цена</label>
 
                                 <div class="col-md-8">
-                                    <input id="priceDetail" type="text" class="form-control" name="priceDetail" value="700" readonly="readonly">
+                                    <input id="priceDetail" type="text" class="form-control" name="priceDetail" value="0">
                                 </div>
                             </div>
 
@@ -277,7 +280,7 @@
                                     <button type="submit" class="btn btn-primary">
                                         Добавить
                                     </button>
-                                    <button onclick="Form.addDetailFieldset('.product-form')" type="button" class="btn btn-success">
+                                    <button onclick="Form.addDetailFieldset('.detail-form')" type="button" class="btn btn-success">
                                         <i class="fas fa-cube"></i>
                                     </button>
                                 </div>

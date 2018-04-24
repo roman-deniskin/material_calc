@@ -4,35 +4,24 @@ var Form = {
         alert("Element added");
     },
     addDetailFieldset: function(formName) {
-        console.log(formName + " fieldset.material .form-group.row.detail-wrapper");
-        var lastElemClassName = $(formName + " fieldset.material .form-group.row.detail-wrapper").last().prop('class');
-        var elemClassName = $("fieldset.material .form-group.row.detail-wrapper:last-child");
-        var elemAmount = Number(lastElemClassName.split(' ').pop().replace(/\D+/g,""))
-        lastElemClassName = lastElemClassName.split(' ').pop().replace(/[^A-Za-z]/g,'');
-        var container = $('fieldset.material');
+        var lastElemClassName = $(formName + " fieldset.material .form-group.row");
+        lastElemClassName = lastElemClassName.last().prop('class');
+        //var lastElemClassName = $(fieldSelector).last().prop('class');
+        console.log(lastElemClassName);
+        var elemClassName = $("fieldset.material .form-group.row.detail-wrapper:last-child").last();
+        var container = $(formName + ' fieldset.material');
 
         $(elemClassName)
             .clone()
-            .removeClass(lastElemClassName + elemAmount)
-            .addClass(lastElemClassName + (elemAmount+1))
+            .addClass(lastElemClassName)
             .appendTo(container);
-        $('.'+lastElemClassName + (elemAmount))
-            .find('select');
-        $('.'+lastElemClassName + (elemAmount))
+        $('.'+lastElemClassName)
+            .find('select')
             .find('input');
         lastElemClassName = null;
     },
     remoteMaterial: function(obj) {
         $(obj).parents().eq(1).remove();
-        $('fieldset.material').children.each(function(index, element){
-            $(element).removeClassWild("elem*").addClass('elem' + (index+1));
-        });
-        $('fieldset.material').removeClassWild = function(mask) {
-            return this.removeClass(function(index, cls) {
-                var re = mask.replace(/\*/g, '\\S+');
-                return (cls.match(new RegExp('\\b' + re + '', 'g')) || []).join(' ');
-            });
-        };
     },
     addProductFieldset: function(obj) {
         $(obj).parent('.btn-combined-group').parent('.form-group').remove();

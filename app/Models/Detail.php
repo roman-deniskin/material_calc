@@ -54,7 +54,7 @@ class Detail extends Model
                     ['name' => $this->detailName, 'extraCharge' => $this->extraCharge, 'price' => $this->price]
                 );
                 foreach ($this->materials as $key => $material) {
-
+                    var_dump($material);
                     DB::table('materials_stock')->insert(
                         ['material_id' => $material['material']['id'], 'detail_id' => $this->detailId, 'amount' => $material['material']['amount']]
                     );
