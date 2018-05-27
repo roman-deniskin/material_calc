@@ -26,18 +26,27 @@ html {
     width: 100%;
     min-width: 300px;
     max-width: 1140px;
-    height: 60vh;
-    min-height: 300px;
+    height: 600px;
 }
 .devices-wrapper .laptop {
     background-image: url(../img/welcome/device-laptop.png);
     background-size: contain;
-    background-position: center;
+    background-position: bottom;
     background-repeat: no-repeat;
     width: inherit;
     height: 100%;
-    position: absolute;
     left: 0;
+    z-index: 10;
+}
+.laptop .laptop-screen {
+    background-image: url(/img/welcome/desctop-screen-1.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 63.4%;
+    height: 75.67%;
+    position: absolute;
+    margin: 2.3% 0% 0 18.2%;
+    z-index: -10;
 }
 .devices-wrapper .phone {
     background-image: url(../img/welcome/device-phone.png);
@@ -66,15 +75,40 @@ html {
         right: 10%;
         max-width: 25%;
     }
+    .laptop .laptop-screen {
+        width: 67.4%;
+        height: 75.67%;
+        position: absolute;
+        margin: 9.8% 0% 0 16.3%;
+    }
 }
 @media (max-width: 992px) {
     .devices-wrapper .phone {
         right: 90px;
+        height: 45%;
+    }
+    .laptop .laptop-screen {
+        width: 67.6%;
+        height: 75.67%;
+        position: absolute;
+        margin: 32.1% 0% 0 16.1%;
     }
 }
 @media (max-width: 768px) {
+    .devices-wrapper {
+        height: 340px;
+    }
     .devices-wrapper .phone {
         right: 40px;
         max-width: 25%;
+    }
+    .devices-wrapper .laptop {
+        height: 310px;
+    }
+    .laptop .laptop-screen {
+        width: 67.6%;
+        height: 75.67%;
+        position: absolute;
+        margin: 6.0% 0 0 16.1%;
     }
 }
